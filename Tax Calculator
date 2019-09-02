@@ -1,0 +1,107 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Assignment2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            txtSalary.Text = "";
+            txtTax.Text = "";
+            txtIncome.Text = "";
+            panel.Visible = false;
+            lblErrorDisplay.Visible = false;
+        }
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void TxtTax_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnCalculate_Click(object sender, EventArgs e)
+        {
+            double salary = Convert.ToDouble(txtSalary.Text);
+            double tax;
+            double sal;
+            panel.Visible = true;            
+            if (0<salary & salary<=14999.99)
+            {
+                tax = salary * 0.15;
+                txtTax.Text = Convert.ToString(tax);
+                txtIncome.Text = Convert.ToString(salary-tax);
+                lblErrorDisplay.Visible = false;
+            }
+
+            else if (15000<=salary & salary<=29999.99)
+            {
+                sal = salary - 15000;
+                tax = 2250 + (sal * 0.18);
+                txtTax.Text = Convert.ToString(tax);
+                txtIncome.Text = Convert.ToString(salary - tax);
+                lblErrorDisplay.Visible = false;
+            }
+            else if (30000<=salary & salary<=49999.99)
+            {
+                sal = salary - 30000;
+                tax = 4950 + (sal * 0.22);
+                txtTax.Text = Convert.ToString(tax);
+                txtIncome.Text = Convert.ToString(salary - tax);
+                lblErrorDisplay.Visible = false;
+            }
+            else if (50000<=salary & salary<=79999.99)
+            {
+                sal = salary - 50000;
+                tax = 9350 + (sal * 0.27);
+                txtTax.Text = Convert.ToString(tax);
+                txtIncome.Text = Convert.ToString(salary - tax);
+                lblErrorDisplay.Visible = false;
+            }
+            else if (salary>=80000)
+            {
+                sal = salary - 80000;
+                tax = 17450 + (sal * 0.33);
+                txtTax.Text = Convert.ToString(tax);
+                txtIncome.Text = Convert.ToString(salary - tax);
+                lblErrorDisplay.Visible = false;
+            }
+            else
+            {
+                txtTax.Text = "0";
+                txtIncome.Text = "0";
+                lblErrorDisplay.Text = "Enter valid Salary";
+                lblErrorDisplay.Visible = true;
+                panel.Visible = false;
+            }
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
