@@ -1,0 +1,61 @@
+sing System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Assignment1
+{
+    public partial class Assignment1 : Form
+    {
+        public Assignment1()
+        {
+            InitializeComponent();
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            txtHours.Text = "";
+            txtRate.Text = "";
+            txtST.Text = "";
+            txtOT.Text = "";
+            txtPayAmt.Text = "";
+            panel.Visible = false;
+        }
+
+        private void Calculate_Click(object sender, EventArgs e)
+        {
+            double h = Convert.ToDouble(txtHours.Text);
+            double r = Convert.ToDouble(txtRate.Text);
+            if (h <= 37.5)
+                {
+                panel.Visible = false;
+                double st = h * r;
+                txtST.Text = '$'+Convert.ToString(st);
+                txtPayAmt.Text = '$'+Convert.ToString(st);
+            }
+            else
+            {
+                double st = 37.5 * r;
+                double oh = h - 37.5;
+                double ot = oh * (1.5 * r);
+                double pa = st + ot;
+                txtST.Text = '$'+Convert.ToString(st);
+                txtOT.Text = '$'+Convert.ToString(ot);
+                txtPayAmt.Text = '$'+Convert.ToString(pa);
+                panel.Visible = true;
+            }
+           
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+    }
+}
